@@ -668,8 +668,20 @@
     }
 
     .work-item:first-child {
-      grid-column: span 2;
-      aspect-ratio: 8/5;
+      grid-column: span 1;
+      aspect-ratio: 4/3;
+    }
+
+    @media (max-width: 1024px) {
+      .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .work-img {
@@ -988,11 +1000,6 @@
 
       .process-right { position: static; }
 
-      .work-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .work-item:first-child { grid-column: span 2; }
-
       .proof-grid { grid-template-columns: 1fr; }
 
       .form-row { grid-template-columns: 1fr; }
@@ -1002,14 +1009,8 @@
       .services-header { flex-direction: column; align-items: flex-start; }
     }
 
-    @media (max-width: 560px) {
-      section { padding: 4rem 0; }
 
-      .work-grid { grid-template-columns: 1fr; }
-      .work-item:first-child { grid-column: span 1; }
 
-      .pricing-grid { grid-template-columns: 1fr; }
-    }
 
     @media (prefers-reduced-motion: reduce) {
       .fade-up { opacity: 1; transform: none; transition: none; }
@@ -1289,19 +1290,67 @@
       <div class="work-item">
         <img
           class="work-img"
-          src="https://mir-s3-cdn-cf.behance.net/projects/404/207972190874619.Y3JvcCwxMDA3LDc4OCwxOTcsMA.png"
-          alt="Bodega Wine Menu Bar"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/46872e209827529.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png"
+          alt="Smile Burger Logo Design"
           loading="lazy"
         />
         <div class="work-overlay">
           <div class="work-info">
-            <p class="work-tag">Menu Design · Bar</p>
-            <p class="work-title-card">Bodega Wine Bar</p>
+            <p class="work-tag">Logo Design · Food</p>
+            <p class="work-title-card">Smile Burger</p>
           </div>
         </div>
       </div>
 
       <!-- Item 2 -->
+      <div class="work-item">
+        <img
+          class="work-img"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/93b302240895657.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png"
+          alt="Engine Remaps Tuning Logo Design"
+          loading="lazy"
+        />
+        <div class="work-overlay">
+          <div class="work-info">
+            <p class="work-tag">Logo Design · Automotive</p>
+            <p class="work-title-card">Engine Remaps Tuning</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="work-item">
+        <img
+          class="work-img"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/0ca735219988383.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png"
+          alt="Wedding Branding"
+          loading="lazy"
+        />
+        <div class="work-overlay">
+          <div class="work-info">
+            <p class="work-tag">Brand Identity · Wedding</p>
+            <p class="work-title-card">Wedding Branding</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="work-item">
+        <img
+          class="work-img"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/504380204583993.Y3JvcCwxMDA3LDc4OCwxOTcsMA.png"
+          alt="Logo Design Marketing Agency"
+          loading="lazy"
+        />
+        <div class="work-overlay">
+          <div class="work-info">
+            <p class="work-tag">Logo Design · Agency</p>
+            <p class="work-title-card">Marketing Agency Logo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
       <div class="work-item">
         <img
           class="work-img"
@@ -1312,28 +1361,12 @@
         <div class="work-overlay">
           <div class="work-info">
             <p class="work-tag">Logo Design · Bar</p>
-            <p class="work-title-card">Bodega Wine Bar Logo</p>
+            <p class="work-title-card">Bodega Wine Bar</p>
           </div>
         </div>
       </div>
 
-      <!-- Item 3 -->
-      <div class="work-item">
-        <img
-          class="work-img"
-          src="https://mir-s3-cdn-cf.behance.net/projects/404/919cc5197537815.Y3JvcCwyMDcxLDE2MjAsNDA1LDA.png"
-          alt="Microgreens Brand"
-          loading="lazy"
-        />
-        <div class="work-overlay">
-          <div class="work-info">
-            <p class="work-tag">Print Design · Food</p>
-            <p class="work-title-card">Microgreens Brand</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Item 4 -->
+      <!-- Item 6 -->
       <div class="work-item">
         <img
           class="work-img"
@@ -1345,38 +1378,6 @@
           <div class="work-info">
             <p class="work-tag">Brand Identity · Cafe</p>
             <p class="work-title-card">Melo Haus</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Item 5 -->
-      <div class="work-item">
-        <img
-          class="work-img"
-          src="https://mir-s3-cdn-cf.behance.net/projects/404/f5bdde189979265.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png"
-          alt="Coffee Bar Menu"
-          loading="lazy"
-        />
-        <div class="work-overlay">
-          <div class="work-info">
-            <p class="work-tag">Menu Design · Cafe</p>
-            <p class="work-title-card">Coffee Bar Menu</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Item 6 -->
-      <div class="work-item">
-        <img
-          class="work-img"
-          src="https://mir-s3-cdn-cf.behance.net/projects/404/0e6c18221106425.Y3JvcCwxMzgyLDEwODEsMjcwLDA.png"
-          alt="Milk Farm Brand Identity"
-          loading="lazy"
-        />
-        <div class="work-overlay">
-          <div class="work-info">
-            <p class="work-tag">Brand Identity · Food</p>
-            <p class="work-title-card">Milk Farm Brand</p>
           </div>
         </div>
       </div>
@@ -1427,7 +1428,7 @@
         <div class="contact-details">
           <div class="contact-item">
             <span class="contact-item-label">Email</span>
-            <span>dsgnkale@gmail.com</span>
+            <span>dsgnkale@email.com</span>
           </div>
           <div class="contact-item">
             <span class="contact-item-label">Based in</span>
