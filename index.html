@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kale — Brand Identity Designer</title>
+  <meta name="description" content="I build brand identities from scratch for small businesses in Europe and the US. Logos, visual systems, and everything your business needs to look like it means it." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ── Tokens ─────────────────────────────────────────── */
+    :root {
+      --ink:      #1A1917;
+      --parch:    #F2EDE4;
+      --parch-lt: #FAF7F2;
+      --clay:     #C4825A;
+      --bark:     #8C7355;
+      --sand:     #EDE8DF;
+      --mid:      #3A3733;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --display: 'Archivo', system-ui, sans-serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+
+      --max: 1160px;
+      --side: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    /* ── Base ───────────────────────────────────────────── */
+    body {
+      font-family: var(--sans);
+      background: var(--ink);
+      color: var(--parch);
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-weight: 300;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--side);
+    }
+
+    /* ── Nav ────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem var(--side);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(26, 25, 23, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(242, 237, 228, 0.07);
+    }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--parch);
+    }
+
+    .nav-logo span { color: var(--clay); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      color: rgba(242, 237, 228, 0.6);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--parch); }
+
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--clay);
+      color: #F3EDE5;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--clay); color: #F3EDE5; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--parch);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ── Hero ───────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 5rem var(--side) 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: flex-end;
+    }
+
+    .hero-left {}
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 2.5rem;
+      height: 1px;
+      background: var(--clay);
+    }
+
+    .hero-headline {
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-size: clamp(2.8rem, 6.5vw, 6rem);
+      font-weight: 500;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-headline em {
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--clay);
+    }
+
+    .hero-headline strong {
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 1em;
+      font-style: normal;
+      letter-spacing: -0.03em;
+      color: var(--parch);
+      display: block;
+      margin-top: 0.35em;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: 0;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(242, 237, 228, 0.65);
+      line-height: 1.75;
+      max-width: 38ch;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-sub strong {
+      color: var(--parch);
+      font-weight: 400;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--clay);
+      color: #F3EDE5;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: #B5723F; transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: transparent;
+      color: #F3EDE5;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border-radius: 2px;
+      border: 1px solid rgba(242, 237, 228, 0.25);
+      transition: border-color 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-secondary:hover { border-color: #F3EDE5; }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: var(--side);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(242, 237, 228, 0.35);
+      writing-mode: vertical-lr;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 3rem;
+      background: rgba(242, 237, 228, 0.2);
+    }
+
+    /* ── Divider ────────────────────────────────────────── */
+    .rule {
+      border: none;
+      border-top: 1px solid rgba(242, 237, 228, 0.1);
+    }
+    .rule-clay {
+      border-color: rgba(196, 130, 90, 0.3);
+    }
+
+    /* ── Section base ───────────────────────────────────── */
+    section { padding: 6rem 0; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--bark);
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title em {
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--clay);
+    }
+
+    .section-title strong {
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-weight: 800;
+      font-style: normal;
+      color: inherit;
+    }
+
+    /* ── Value strip ────────────────────────────────────── */
+    #value {
+      background: var(--mid);
+      padding: 3rem 0;
+    }
+
+    .value-inner {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .value-item {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .value-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--clay);
+      border-radius: 50%;
+      margin-top: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    .value-text {
+      font-size: 0.88rem;
+      color: rgba(242, 237, 228, 0.7);
+      line-height: 1.55;
+    }
+    .value-text strong {
+      display: block;
+      color: var(--parch);
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+
+    /* ── Problem/Solution ───────────────────────────────── */
+    #why {
+      background: var(--parch);
+      color: var(--ink);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .why-left .section-title { color: var(--ink); }
+    .why-left .section-title em { color: var(--clay); }
+    .why-left .section-label { color: var(--bark); }
+
+    .why-body {
+      font-size: 1.05rem;
+      color: rgba(26, 25, 23, 0.65);
+      line-height: 1.8;
+    }
+    .why-body p + p { margin-top: 1.25rem; }
+    .why-body strong { color: var(--ink); font-weight: 500; }
+
+    .why-right {}
+
+    .callout {
+      background: var(--ink);
+      color: var(--parch);
+      padding: 2.5rem;
+      border-radius: 3px;
+      margin-bottom: 2rem;
+    }
+
+    .callout-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.7rem;
+      font-weight: 300;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    .callout-source {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay);
+    }
+
+    .advantage-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .advantage-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 0.92rem;
+      color: rgba(26, 25, 23, 0.7);
+      line-height: 1.55;
+    }
+
+    .advantage-list li::before {
+      content: '→';
+      color: var(--clay);
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    /* ── Services / Pricing ─────────────────────────────── */
+    #services {
+      background: var(--ink);
+    }
+
+    .services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5px;
+      background: rgba(242, 237, 228, 0.08);
+      border: 1px solid rgba(242, 237, 228, 0.08);
+    }
+
+    .price-card {
+      background: var(--ink);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .price-card:hover { background: var(--mid); }
+
+    .price-card.featured {
+      background: var(--clay);
+      color: var(--ink);
+    }
+
+    .price-card.featured:hover { background: #B5723F; }
+
+    .price-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bark);
+      margin-bottom: 1.5rem;
+    }
+
+    .price-card.featured .price-label { color: rgba(26, 25, 23, 0.6); }
+
+    .price-name {
+      font-family: var(--display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .price-card.featured .price-name { color: var(--ink); }
+
+    .price-range {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--clay);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .price-card.featured .price-range { color: var(--ink); }
+
+    .price-rule {
+      border: none;
+      border-top: 1px solid rgba(242, 237, 228, 0.12);
+      margin-bottom: 1.5rem;
+    }
+
+    .price-card.featured .price-rule { border-color: rgba(26, 25, 23, 0.2); }
+
+    .price-includes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .price-includes li {
+      font-size: 0.85rem;
+      color: rgba(242, 237, 228, 0.65);
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      line-height: 1.45;
+    }
+
+    .price-card.featured .price-includes li { color: rgba(26, 25, 23, 0.7); }
+
+    .price-includes li::before {
+      content: '—';
+      color: var(--clay);
+      flex-shrink: 0;
+    }
+
+    .price-card.featured .price-includes li::before { color: var(--ink); }
+
+    .price-badge {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--clay);
+      padding: 0.3rem 0.6rem;
+      border-radius: 1px;
+    }
+
+    .pricing-note {
+      margin-top: 2rem;
+      font-size: 0.82rem;
+      color: rgba(242, 237, 228, 0.4);
+      text-align: center;
+    }
+
+    /* ── Process ────────────────────────────────────────── */
+    #process {
+      background: var(--sand);
+      color: var(--ink);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(26, 25, 23, 0.1);
+      cursor: default;
+    }
+
+    .process-step:first-child { padding-top: 0; }
+    .process-step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: rgba(26, 25, 23, 0.15);
+      line-height: 1;
+      padding-top: 0.15rem;
+      letter-spacing: -0.03em;
+    }
+
+    .step-body {}
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: rgba(26, 25, 23, 0.6);
+      line-height: 1.65;
+    }
+
+    .process-right {
+      position: sticky;
+      top: 8rem;
+    }
+
+    .process-right .section-label { color: var(--bark); }
+    .process-right .section-title { color: var(--ink); }
+    .process-right .section-title em { color: var(--clay); }
+
+    .process-body {
+      margin-top: 1.75rem;
+      font-size: 1rem;
+      color: rgba(26, 25, 23, 0.65);
+      line-height: 1.8;
+    }
+
+    .process-body p + p { margin-top: 1rem; }
+
+    .process-cta {
+      margin-top: 2.5rem;
+    }
+
+    /* ── Work ───────────────────────────────────────────── */
+    #work {
+      background: var(--ink);
+    }
+
+    .work-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: rgba(242, 237, 228, 0.06);
+    }
+
+    .work-item {
+      position: relative;
+      background: var(--mid);
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .work-item:first-child {
+      grid-column: span 2;
+      aspect-ratio: 8/5;
+    }
+
+    .work-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .work-item:hover .work-img { transform: scale(1.04); }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,25,23,0.85) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+
+    .work-item:hover .work-overlay { opacity: 1; }
+
+    .work-info {}
+
+    .work-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.3rem;
+    }
+
+    .work-title-card {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--parch);
+    }
+
+    /* Placeholder cards for work without images */
+    .work-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      background: var(--mid);
+    }
+
+    /* ── Behance CTA ────────────────────────────────────── */
+    .work-footer {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    /* ── Testimonial ────────────────────────────────────── */
+    #social-proof {
+      background: var(--parch-lt);
+      color: var(--ink);
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(26, 25, 23, 0.08);
+    }
+
+    .proof-card {
+      background: var(--parch-lt);
+      padding: 2.5rem 2rem;
+    }
+
+    .proof-stars {
+      color: var(--clay);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+    }
+
+    .proof-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .proof-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bark);
+    }
+
+    /* ── Contact ────────────────────────────────────────── */
+    #contact {
+      background: var(--ink);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-left {}
+    .contact-left .section-label { color: var(--bark); }
+
+    .contact-intro {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: rgba(242, 237, 228, 0.6);
+      line-height: 1.8;
+      max-width: 38ch;
+    }
+
+    .contact-details {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.88rem;
+      color: rgba(242, 237, 228, 0.5);
+    }
+
+    .contact-item-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      width: 5rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Form ───────────────────────────────────────────── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(242, 237, 228, 0.45);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: rgba(242, 237, 228, 0.05);
+      border: 1px solid rgba(242, 237, 228, 0.1);
+      border-radius: 2px;
+      color: var(--parch);
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      padding: 0.85rem 1rem;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+      outline: none;
+      appearance: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--clay);
+      background: rgba(196, 130, 90, 0.06);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: rgba(242, 237, 228, 0.25); }
+
+    .form-select option { background: var(--ink); color: var(--parch); }
+
+    .form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+    .form-submit {
+      margin-top: 0.5rem;
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: rgba(242, 237, 228, 0.3);
+      margin-top: 0.75rem;
+    }
+
+    .form-success {
+      display: none;
+      padding: 1.5rem;
+      background: rgba(196, 130, 90, 0.1);
+      border: 1px solid rgba(196, 130, 90, 0.3);
+      border-radius: 2px;
+      color: var(--clay);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer {
+      background: #131210;
+      padding: 3rem 0;
+      border-top: 1px solid rgba(242, 237, 228, 0.06);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: rgba(242, 237, 228, 0.5);
+    }
+
+    .footer-logo span { color: var(--clay); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer-links a {
+      color: rgba(242, 237, 228, 0.35);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--parch); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(242, 237, 228, 0.25);
+    }
+
+    /* ── Scroll animations ──────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Mobile nav overlay ─────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--ink);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--display);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--parch);
+      letter-spacing: 0.03em;
+    }
+    .mobile-menu a:hover { color: var(--clay); }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-right { padding-bottom: 0; }
+
+      .why-grid,
+      .process-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      .process-right { position: static; }
+
+      .work-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .work-item:first-child { grid-column: span 2; }
+
+      .proof-grid { grid-template-columns: 1fr; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+
+      .services-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 560px) {
+      section { padding: 4rem 0; }
+
+      .work-grid { grid-template-columns: 1fr; }
+      .work-item:first-child { grid-column: span 1; }
+
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1; transform: none; transition: none; }
+      .work-img { transition: none; }
+      .work-overlay { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────── -->
+<nav>
+  <a href="#hero" class="nav-logo">Kale<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#why">Why Kale</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#work">Work</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Start a project</a>
+  <button class="hamburger" aria-label="Open menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" onclick="this.classList.remove('open')">
+  <a href="#why">Why Kale</a>
+  <a href="#services">Services</a>
+  <a href="#process">Process</a>
+  <a href="#work">Work</a>
+  <a href="#contact">Start a project →</a>
+</div>
+
+<!-- ── Hero ─────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <h1 class="hero-headline">
+        Your brand is the first thing people
+        <em>judge.</em>
+        <strong>Make it count.</strong>
+      </h1>
+    </div>
+    <div class="hero-right fade-up">
+      <p class="hero-sub">
+        I build <strong>complete brand identities from scratch</strong> — for cafes, restaurants, and small businesses across Europe and the US that want to look like they mean it.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Start a project →</a>
+        <a href="#work" class="btn-secondary">See the work</a>
+      </div>
+    </div>
+  </div>
+  <span class="hero-scroll">Scroll</span>
+</section>
+
+<!-- ── Value strip ───────────────────────────────────────── -->
+<div id="value">
+  <div class="wrap">
+    <div class="value-inner">
+      <div class="value-item">
+        <div class="value-dot"></div>
+        <div class="value-text">
+          <strong>Full brand from scratch</strong>
+          Not templates. Built for your business only.
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-dot"></div>
+        <div class="value-text">
+          <strong>Western quality, fair pricing</strong>
+          EU/US result. Serbia-based overhead.
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-dot"></div>
+        <div class="value-text">
+          <strong>You own everything</strong>
+          Full rights. Source files. No recurring fees.
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-dot"></div>
+        <div class="value-text">
+          <strong>English, fluent</strong>
+          Clear communication. No language barrier.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Why ───────────────────────────────────────────────── -->
+<section id="why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-left fade-up">
+        <h2 class="section-title">Branding that looks expensive<br><em>doesn't have to cost a fortune.</em></h2>
+      </div>
+      <div class="why-right fade-up">
+        <div class="callout">
+          <p class="callout-text">"A good brand makes your business look like it's been around for years — even if you opened last month."</p>
+          <p class="callout-source">— Kale, on what brand design actually does</p>
+        </div>
+        <div class="why-body">
+          <p>
+            A top brand designer in London or New York charges <strong>€3,000–8,000+</strong> for the same result you'll get working with me. The difference isn't the quality — it's the zip code.
+          </p>
+          <p>
+            I'm based in Serbia. My costs are lower. I pass that directly to you — and you get a brand that stands alongside anything made in any major city.
+          </p>
+        </div>
+        <ul class="advantage-list" style="margin-top: 2rem;">
+          <li>Cafes and food brands are my specialty — I understand the market</li>
+          <li>Every project is bespoke — nothing from a template library</li>
+          <li>You get a designer who's invested, not an agency account manager</li>
+          <li>Fast turnaround — no waiting weeks for feedback rounds</li>
+          <li>Upwork-verified with a 4.9 rating across completed projects</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Services / Pricing ────────────────────────────────── -->
+<section id="services">
+  <div class="wrap">
+    <div class="services-header">
+      <div>
+        <h2 class="section-title">Simple packages.<br><em>No surprises.</em></h2>
+      </div>
+      <p style="font-size: 0.88rem; color: rgba(242,237,228,0.45); max-width: 32ch; line-height: 1.7;">
+        All prices in EUR. Custom scopes available — just reach out and we'll figure it out.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Logo Only -->
+      <div class="price-card">
+        <p class="price-label">Starter</p>
+        <h3 class="price-name">Logo Design</h3>
+        <p class="price-range">€350 – €500</p>
+        <hr class="price-rule" />
+        <ul class="price-includes">
+          <li>3 initial concepts</li>
+          <li>2 rounds of revisions</li>
+          <li>All file formats (SVG, PNG, PDF)</li>
+          <li>Light and dark versions</li>
+          <li>Full copyright transfer</li>
+        </ul>
+      </div>
+
+      <!-- Brand Starter -->
+      <div class="price-card">
+        <p class="price-label">Popular</p>
+        <h3 class="price-name">Brand Starter</h3>
+        <p class="price-range">€700 – €1,000</p>
+        <hr class="price-rule" />
+        <ul class="price-includes">
+          <li>Everything in Logo Design</li>
+          <li>Color palette (primary + secondary)</li>
+          <li>Typography system</li>
+          <li>Brand usage guidelines (PDF)</li>
+          <li>Social media profile assets</li>
+        </ul>
+      </div>
+
+      <!-- Full Identity — featured -->
+      <div class="price-card featured">
+        <div class="price-badge">Most complete</div>
+        <p class="price-label">Recommended</p>
+        <h3 class="price-name">Full Brand Identity</h3>
+        <p class="price-range">€1,500 – €2,500</p>
+        <hr class="price-rule" />
+        <ul class="price-includes">
+          <li>Everything in Brand Starter</li>
+          <li>Brand strategy brief</li>
+          <li>Mockup presentation</li>
+          <li>Brand board + visual system</li>
+          <li>All source files (AI, PSD)</li>
+          <li>Stationery design</li>
+        </ul>
+      </div>
+
+      <!-- Brand + Collateral -->
+      <div class="price-card">
+        <p class="price-label">Complete</p>
+        <h3 class="price-name">Brand + Collateral</h3>
+        <p class="price-range">€2,500 – €4,000</p>
+        <hr class="price-rule" />
+        <ul class="price-includes">
+          <li>Everything in Full Identity</li>
+          <li>Menu design</li>
+          <li>Business cards</li>
+          <li>Social media templates (×5)</li>
+          <li>Packaging or signage concepts</li>
+          <li>Priority turnaround</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="pricing-note">Not sure which package fits? <a href="#contact" style="color: var(--clay);">Drop me a message</a> — I'll tell you what you actually need.</p>
+  </div>
+</section>
+
+<!-- ── Process ───────────────────────────────────────────── -->
+<section id="process">
+  <div class="wrap">
+    <div class="process-grid">
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <h3 class="step-title">Discovery call</h3>
+            <p class="step-desc">Free 30-minute conversation. I learn about your business, your audience, and what you want your brand to feel like. No pitch, no sales pressure.</p>
+          </div>
+        </div>
+        <div class="process-step fade-up">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <h3 class="step-title">Brand brief</h3>
+            <p class="step-desc">I translate what we discussed into a written brief — positioning, mood, direction. You approve it before any design work starts.</p>
+          </div>
+        </div>
+        <div class="process-step fade-up">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <h3 class="step-title">Concepts presented</h3>
+            <p class="step-desc">You receive 2–3 distinct logo directions, each presented in context. Real mockups, not white-background PDFs.</p>
+          </div>
+        </div>
+        <div class="process-step fade-up">
+          <span class="step-num">4</span>
+          <div class="step-body">
+            <h3 class="step-title">Refinement</h3>
+            <p class="step-desc">We pick the strongest direction and refine it together. Colour, weight, spacing — every detail until it's right.</p>
+          </div>
+        </div>
+        <div class="process-step fade-up">
+          <span class="step-num">5</span>
+          <div class="step-body">
+            <h3 class="step-title">Final delivery</h3>
+            <p class="step-desc">All files, all formats, full copyright. A brand you can actually use — on print, digital, signage, anything.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-right fade-up">
+        <h2 class="section-title">A process built around<br><em>clarity, not confusion.</em></h2>
+        <div class="process-body">
+          <p>Most clients have never worked with a brand designer before. I've built a process that makes it simple — you know exactly what's happening, what's next, and what you're getting.</p>
+          <p>From first call to final delivery, most projects take 2–4 weeks depending on the package and your feedback speed.</p>
+        </div>
+        <div class="process-cta">
+          <a href="#contact" class="btn-primary">Book a free call →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Work ──────────────────────────────────────────────── -->
+<section id="work">
+  <div class="wrap">
+    <div class="work-header">
+      <div>
+        <h2 class="section-title">Brands built<br><em>from scratch.</em></h2>
+      </div>
+      <a href="https://www.behance.net/calecreates" target="_blank" rel="noopener" class="btn-secondary">
+        View full portfolio →
+      </a>
+    </div>
+
+    <div class="work-grid">
+      <!-- Item 1: wide -->
+      <div class="work-item">
+        <img
+          class="work-img"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/207972190874619.Y3JvcCwxMDA3LDc4OCwxOTcsMA.png"
+          alt="Bodega Wine Menu Bar"
+          loading="lazy"
+        />
+        <div class="work-overlay">
+          <div class="work-info">
+            <p class="work-tag">Menu Design · Bar</p>
+            <p class="work-title-card">Bodega Wine Bar</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="work-item">
+        <img
+          class="work-img"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/9cb373185333267.Y3JvcCwxMTIxLDg3NywzOTEsMTY5.png"
+          alt="Bodega Wine Bar Logo Design"
+          loading="lazy"
+        />
+        <div class="work-overlay">
+          <div class="work-info">
+            <p class="work-tag">Logo Design · Bar</p>
+            <p class="work-title-card">Bodega Wine Bar Logo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="work-item">
+        <img
+          class="work-img"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/919cc5197537815.Y3JvcCwyMDcxLDE2MjAsNDA1LDA.png"
+          alt="Microgreens Brand"
+          loading="lazy"
+        />
+        <div class="work-overlay">
+          <div class="work-info">
+            <p class="work-tag">Print Design · Food</p>
+            <p class="work-title-card">Microgreens Brand</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="work-item">
+        <img
+          class="work-img"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/6e9514231351145.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png"
+          alt="Melo Haus Coffee Vinyl Shop"
+          loading="lazy"
+        />
+        <div class="work-overlay">
+          <div class="work-info">
+            <p class="work-tag">Brand Identity · Cafe</p>
+            <p class="work-title-card">Melo Haus</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="work-item">
+        <img
+          class="work-img"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/f5bdde189979265.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png"
+          alt="Coffee Bar Menu"
+          loading="lazy"
+        />
+        <div class="work-overlay">
+          <div class="work-info">
+            <p class="work-tag">Menu Design · Cafe</p>
+            <p class="work-title-card">Coffee Bar Menu</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="work-item">
+        <img
+          class="work-img"
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/0e6c18221106425.Y3JvcCwxMzgyLDEwODEsMjcwLDA.png"
+          alt="Milk Farm Brand Identity"
+          loading="lazy"
+        />
+        <div class="work-overlay">
+          <div class="work-info">
+            <p class="work-tag">Brand Identity · Food</p>
+            <p class="work-title-card">Milk Farm Brand</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-footer">
+      <a href="https://www.behance.net/calecreates" target="_blank" rel="noopener" class="btn-secondary">
+        See all projects on Behance →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Social proof ──────────────────────────────────────── -->
+<section id="social-proof">
+  <div class="wrap">
+    <p class="section-label" style="color: var(--bark); margin-bottom: 3rem;">Client feedback</p>
+    <div class="proof-grid">
+      <div class="proof-card fade-up">
+        <p class="proof-stars">★★★★★</p>
+        <p class="proof-quote">"Kale delivered exactly what we needed. The brand feels cohesive and professional — our customers notice the difference."</p>
+        <p class="proof-author">Upwork client · 5.0 rating</p>
+      </div>
+      <div class="proof-card fade-up">
+        <p class="proof-stars">★★★★★</p>
+        <p class="proof-quote">"Fast, responsive, and genuinely talented. He understood the brief immediately and the concepts were spot-on from the first round."</p>
+        <p class="proof-author">Upwork client · 5.0 rating</p>
+      </div>
+      <div class="proof-card fade-up">
+        <p class="proof-stars">★★★★★</p>
+        <p class="proof-quote">"Worth every euro. The logo he created is now the foundation of everything we put out — packaging, social, signage."</p>
+        <p class="proof-author">Upwork client · 4.9 rating</p>
+      </div>
+    </div>
+    <p style="margin-top: 2rem; text-align: center; font-size: 0.78rem; color: rgba(26,25,23,0.4);">Based on verified reviews from Upwork · 4.9/5 average</p>
+  </div>
+</section>
+
+<!-- ── Contact ───────────────────────────────────────────── -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2 class="section-title">Let's build<br>your brand<br><em>from scratch.</em></h2>
+        <p class="contact-intro">
+          Tell me about your business and what you're looking for. I'll respond within 24 hours and we'll book a free 30-minute discovery call to see if we're a good fit.
+        </p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <span class="contact-item-label">Email</span>
+            <span>your@email.com</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Based in</span>
+            <span>Niš, Serbia · Working with EU & US clients</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Response</span>
+            <span>Within 24 hours</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Availability</span>
+            <span>Currently taking new projects</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <!-- Replace action URL with your Formspree endpoint: https://formspree.io/f/YOUR_ID -->
+        <form
+          class="contact-form"
+          id="contactForm"
+          action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+          method="POST"
+        >
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Your name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="jane@business.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="business">Business type</label>
+              <select class="form-select" id="business" name="business">
+                <option value="" disabled selected>Select...</option>
+                <option>Cafe / Coffee Shop</option>
+                <option>Restaurant / Bar</option>
+                <option>Food & Beverage Brand</option>
+                <option>Retail / Product</option>
+                <option>Service Business</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="budget">Budget range</label>
+              <select class="form-select" id="budget" name="budget">
+                <option value="" disabled selected>Select...</option>
+                <option>€350 – €700 (Logo)</option>
+                <option>€700 – €1,500 (Brand Starter)</option>
+                <option>€1,500 – €2,500 (Full Identity)</option>
+                <option>€2,500+ (Brand + Collateral)</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Tell me about your project</label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="What does your business do? What do you need? What vibe are you going for?" required></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+              Send message →
+            </button>
+            <p class="form-note">I'll reply within 24 hours. No spam, no sales pitch.</p>
+          </div>
+
+          <div class="form-success" id="formSuccess">
+            ✓ Message sent — I'll be in touch within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <span class="footer-logo">Kale<span>.</span></span>
+      <ul class="footer-links">
+        <li><a href="https://www.behance.net/calecreates" target="_blank" rel="noopener">Behance</a></li>
+        <li><a href="https://www.upwork.com/freelancers/~01e5b86c712fdf55a8" target="_blank" rel="noopener">Upwork</a></li>
+        <li><a href="http://linkedin.com/in/milos-kalkov-4a7909267/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <span class="footer-copy">© 2026 Kale. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Scripts ───────────────────────────────────────────── -->
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form handling (Formspree AJAX)
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.reset();
+        success.style.display = 'block';
+        btn.style.display = 'none';
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
