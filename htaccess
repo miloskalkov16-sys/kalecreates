@@ -1,0 +1,2 @@
+# Allowing correct display of SVG files
+AddType image/svg+xml .svg .svgz
