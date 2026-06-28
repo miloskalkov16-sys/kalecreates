@@ -44,8 +44,55 @@
 
   <style>
     /* ── Reset ──────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+   .fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.fade-left.visible { opacity: 1; transform: translateX(0); }
+.fade-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.fade-right.visible { opacity: 1; transform: translateX(0); }
+.stagger > * {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+.stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.1s; }
+.stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.2s; }
+.stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.3s; }
+.stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.4s; }
+
+    .price-card { transition: background 0.2s, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s; }
+.price-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+.price-card.featured { box-shadow: 0 8px 40px rgba(196,130,90,0.2); }
+.price-card.featured:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(196,130,90,0.25); }
+.work-item::after {
+  content: 'VIEW →'; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -30%);
+  opacity: 0; color: #F3EDE5; font-family: var(--sans);
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+  z-index: 2; transition: opacity 0.3s, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.work-item:hover::after { opacity: 1; transform: translate(-50%, -50%); }
+.process-step { transition: padding-left 0.3s cubic-bezier(0.16,1,0.3,1); }
+.process-step:hover { padding-left: 1rem; }
+.process-step:hover .step-num { color: var(--clay); transition: color 0.3s; }
+.nav-links a { position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--parch); transition: width 0.3s cubic-bezier(0.16,1,0.3,1); }
+.nav-links a:hover::after { width: 100%; }
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.12); transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+.btn-primary:hover::after { transform: translateX(0); }
+.callout { box-shadow: 0 0 0 1px rgba(196,130,90,0.2), 0 20px 60px rgba(0,0,0,0.2); transition: box-shadow 0.4s; }
+.callout:hover { box-shadow: 0 0 0 1px rgba(196,130,90,0.5), 0 20px 80px rgba(196,130,90,0.1); }
 
     /* ── Tokens ─────────────────────────────────────────── */
     :root {
@@ -158,6 +205,17 @@
     }
 
     /* ── Hero ───────────────────────────────────────────── */
+    #hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+#hero > * { position: relative; z-index: 1; }
+.hero-grid { position: relative; z-index: 1; }
     #hero {
       min-height: 100svh;
       display: flex;
@@ -352,7 +410,10 @@
 
     /* ── Value strip ────────────────────────────────────── */
     #value {
-      background: var(--mid);
+      background: var(--clay);
+      .value-dot { background: var(--ink); }
+      .value-text { color: rgba(26,25,23,0.75); }
+      .value-text strong { color: var(--ink); }
       padding: 3rem 0;
     }
 
@@ -1113,7 +1174,7 @@
 <!-- ── Value strip ───────────────────────────────────────── -->
 <div id="value">
   <div class="wrap">
-    <div class="value-inner">
+   <div class="value-inner stagger">
       <div class="value-item">
         <div class="value-dot"></div>
         <div class="value-text">
@@ -1150,10 +1211,10 @@
 <section id="why">
   <div class="wrap">
     <div class="why-grid">
-      <div class="why-left fade-up">
+      <div class="why-left fade-left">
         <h2 class="section-title">Branding that looks expensive<br><em>doesn't have to cost a fortune.</em></h2>
       </div>
-      <div class="why-right fade-up">
+      <div class="why-right fade-right">
         <div class="callout">
           <p class="callout-text">"A good brand makes your business look like it's been around for years — even if you opened last month."</p>
           <p class="callout-source">— Kale, on what brand design actually does</p>
@@ -1190,7 +1251,7 @@
       </p>
     </div>
 
-    <div class="pricing-grid">
+    <div class="pricing-grid stagger">
       <!-- Logo Only -->
       <div class="price-card">
         <p class="price-label">Starter</p>
@@ -1584,43 +1645,45 @@
 
 <!-- ── Scripts ───────────────────────────────────────────── -->
 <script>
-  // Scroll fade-in
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.12 }
-  );
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Form handling (Formspree AJAX)
-  const form = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
-
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        form.reset();
-        success.style.display = 'block';
-        btn.style.display = 'none';
-      } else {
-        btn.textContent = 'Error — try again';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'Error — try again';
-      btn.disabled = false;
-    }
-  });
+ const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+});
+(function animateRing() {
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+})();
+document.querySelectorAll('a, button, .work-item, .price-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+  el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+});
+const heroHeadline = document.querySelector('.hero-headline');
+const heroRight = document.querySelector('.hero-right');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (heroHeadline) heroHeadline.style.transform = `translateY(${y * 0.18}px)`;
+  if (heroRight) heroRight.style.transform = `translateY(${y * 0.1}px)`;
+}, { passive: true });
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up, .fade-left, .fade-right, .stagger').forEach(el => observer.observe(el));
+const form = document.getElementById('contactForm');
+const success = document.getElementById('formSuccess');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  try {
+    const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+    if (res.ok) { form.reset(); success.style.display = 'block'; btn.style.display = 'none'; }
+    else { btn.textContent = 'Error — try again'; btn.disabled = false; }
+  } catch { btn.textContent = 'Error — try again'; btn.disabled = false; }
+});
 </script>
 
 </body>
