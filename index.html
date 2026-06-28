@@ -57,7 +57,8 @@
 .fade-left.visible { opacity: 1; transform: translateX(0); }
 .fade-right {
   opacity: 0; transform: translateX(40px);
-  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)
+  .fade-right.visible { opacity: 1; transform: translateX(0); };
 }
 .fade-right.visible { opacity: 1; transform: translateX(0); }
 .stagger > * {
